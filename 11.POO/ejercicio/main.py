@@ -1,15 +1,24 @@
 ################### EJERCICIO 1 #####################
 
-# 1.Crea un archivo llamado "sistema_de_inventario.py" y define una clase llamada "Producto" con atributos como "nombre", "cantidad" y "precio". 
-# 2.También define un método llamado "vender" que reciba una cantidad como argumento, reste esa cantidad al atributo "cantidad" del producto
-#   y retorne True or False si la venta es posible . 
-# 3.También define un método llamado "comprar" que reciba una cantidad como argumento, sume esa cantidad al atributo "cantidad" del producto y no retorne nada.
-# 4.Crea otra clase llamada "Inventario" con atributos como "productos" que es una lista vacía y "total_ventas" que es un número. 
-# 5.También define un método "agregar_producto" que reciba un objeto "Producto" como argumento y lo agregue a la lista de productos del inventario. 
-#     Otro método es "vender_producto" que reciba el nombre del producto y una cantidad, busque el producto correspondiente en la lista de productos y llame al método "vender" en ese producto. 
-#     Ademas, suma el precio total de la venta al atributo "total_ventas" del inventario.
-# 6.Crea otro método en la clase Inventario llamado "comprar_producto" que reciba el nombre del producto y una cantidad, busque el producto correspondiente en la lista de productos y 
-#     llame al método "comprar" en ese producto.
 # 7.Crea un archivo llamado "main.py" e importa la clase "Inventario" del archivo "sistema_de_inventario.py"
 # 8.En el archivo "main.py" crea un objeto "inventario" de la clase "Inventario" y agrega varios objetos "Producto" al inventario utilizando el método "agregar_producto". 
 # 9.Luego, realiza varias ventas y compras de productos utilizando los métodos "vender_producto" y "comprar_producto" del inventario.
+
+from inventario import Inventario
+from producto import Producto
+
+
+producto1 : Producto = Producto('leche desnatada', 10, 0.8)
+producto2 : Producto = Producto('piña', 5, 2.10)
+producto3 : Producto = Producto('vino', 30, 5.50)
+producto4 : Producto = Producto('pizza', 50, 3.20)
+
+lista_productos = [producto1, producto2, producto3, producto4]
+inventario_prueba : Inventario = Inventario() 
+
+for producto in lista_productos:
+    inventario_prueba.agregar_producto(producto)
+
+print(inventario_prueba.get_productos())
+inventario_prueba.vender_producto('leche desnatada', 5)
+print(inventario_prueba.get_total_ventas())
