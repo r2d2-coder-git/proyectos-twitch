@@ -20,7 +20,7 @@ class Mascota():
     __edad : int 
 
     ############################# CONSTRUCTOR DE LA CLASE #####################################
-    def __init__(self, nombre : str, edad : int ):
+    def __init(self, nombre : str, edad : int ):
         self.__nombre = nombre
         self.__edad = edad
         self.__nivel = 1
