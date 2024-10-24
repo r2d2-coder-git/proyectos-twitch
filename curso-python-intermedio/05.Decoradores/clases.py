@@ -48,6 +48,9 @@ class Mascota():
 
     @nombre.setter
     def nombre(self, value):
+        if value == 'Manolo':
+            print("un perro no se puede llamar manolo")
+            return 
         self.__nombre = value
 
     @property
@@ -97,3 +100,9 @@ class Mascota():
             self.__nivel += 2
         elif tipo_torneo == 'Internacional':
             self.__nivel += 3
+
+
+nemo = Mascota('Nemo', 10, 1, 1)
+
+nemo.nombre = 'Manolo'
+print(nemo.nombre)

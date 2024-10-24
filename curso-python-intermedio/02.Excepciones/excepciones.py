@@ -51,14 +51,34 @@
 ############################## EXCEPCIÓN CUANDO UN FICHERO NO EXISTE #####################################
 
 # La excepción FileNotFoundError ya viene definida por defecto en Python.
+filename: str = "no_existo.txt"
 
-
+try: 
+    with open(filename) as fichero_abierto:
+        contents : str = fichero_abierto.read()
+except Exception as e:
+    print(f"Perdona, pero el fichero {filename} no existe")
+    print(e)
+finally:
+    print("Salgo del try except")
 
 ############################## EXCEPCIONES PERSONALIZADAS SIN CONSTRUCTOR #####################################
 
 # Estas excepciones las lanzamos cuando solo queremos ver un mensaje, sin un comportamiento muy avanzado, 
 # como podría ser escribir en un fichero de log el fallo.
 
+class ValorDemasiadoPequenio(Exception): 
+    pass
+
+class ValorDemasiadoGrande(Exception): 
+    pass    
+
+#while True: 
+#    numero: int = int(input('Introduce un número: '))
+#    if numero < 10: 
+#        raise ValorDemasiadoPequenio(f"[Errno -1] El valor {numero} es demasiado pequeño.")
+#    elif numero > 20: 
+#        raise ValorDemasiadoGrande(f"[Errno 0] El valor {numero} es demasiado pequeño.")
     
 ############################## EXCEPCIONES PERSONALIZADAS CON CONSTRUCTOR #####################################
 
@@ -72,3 +92,20 @@
 # El método heredado __str__ de la clase Exception se utiliza para mostrar el mensaje correspondiente 
 # cuando se produce el error SalaryNotInRangeError.
 # También podemos personalizar el propio método __str__ sobreescribiendolo.
+
+class SalarioFueraDeRango(Exception):
+    __salario : int 
+    __mensaje : str
+
+    def __init__(self, salario : int, mensaje : str ="El salario no está en el rango (5000, 15000)") -> None:
+        self.__salario = salario
+        self.__mensaje = mensaje
+        super().__init__(self.__mensaje)
+
+    def __str__(self):
+        return f"{self.__salario} -> {self.__mensaje}"
+    
+salario : int = int(input("Introduce el salario del nuevo empleado: "))
+
+if not 5000 < salario < 15000:
+    raise SalarioFueraDeRango(salario)

@@ -24,10 +24,20 @@
 
 
 ############################## ¿COMO SE TESTEA UNA FUNCIÓN? #####################################
+import unittest
 
+def get_formatted_name(first: str, last: str) -> str:
+    full_name = f"{first} {last}"
+    return full_name.title()
 
 # Para construir un test unitario tenemos que crear una clase que herede de unittest.TestCase, esta clase ejecuta 
 # todos los métodos que empiecen por test_, por eso hay que seguir la convención de definir nuestros tests
-# como métodos que empiecen así. El método main de la clase unittest ejecuta nuestros tests unitarios.
+# como métodos que empiecen así. La clase main de la clase unittest ejecuta nuestros tests unitarios.
+
+class PepitoFlores(unittest.TestCase):
+    def test_first_last_name(self):
+        formatted_name = get_formatted_name("arturo", "lorenzo hernandez")
+        self.assertEqual(formatted_name, "Arturo Lorenzo Hernandez")
 
 
+#unittest.main()

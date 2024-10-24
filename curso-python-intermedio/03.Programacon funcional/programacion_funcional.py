@@ -24,27 +24,62 @@
 
 # Muchas veces necesitamos una funcionalidad en código que no tiene porque estar ligada a un nombre, 
 # por eso las funciones anonimas son muy útiles, especialmente en programación funcional.
+numeros : list = [1,2,3,4]
+impares : list = [1,3,5,7,9]
+pares : list = [2,4,6,8,10]
 
+def lista_reversa(lista: list) -> list:
+    return lista[::-1]
+numeros_reversa : list = lista_reversa(numeros)
+
+
+reversa = lambda lista : lista[::-1]
+numeros_reversa : list = reversa(numeros)
+
+print(numeros_reversa)
 
 ############################## MODIFICAR UNA COLECCION #####################################
 
+#for indice, numero in enumerate(numeros):
+#    numeros[indice] = numero + 1
 
+
+lista_modificada : list = list(map(lambda numero: numero + 1, numeros))
+print(lista_modificada)
 
 ############################## FILTRAR UNA COLECCION #####################################
+lista_pares : list = list(filter(lambda numero : numero % 2 == 0, numeros))
 
+print(lista_pares)
 
 ############################## USO DEL REDUCE #####################################
 
 # El reduce sirve para hacer funciones acumuladas sobre dos parámetros de entrada.
 
+from functools import reduce
 
+multiplicar = lambda numero1, numero2 : numero1 * numero2
+
+multiplicacion_acumulada : int = reduce(multiplicar, numeros) # 1 * 2 * 3 * 4
+
+print(multiplicacion_acumulada)
 
 ############################## UNIR VARIAS COLECCIONES EN UNA #####################################
 
+union = list(zip(impares, pares))
+
+print(union)
 
 ############################## COMPROBAR SI TODOS LOS VALORES SON TRUE EN UNA COLECCION #################################
 
+son_pares : bool = all(map(lambda numero : numero % 2 == 0, impares))
 
-
+print(son_pares)
+# [2,4,6,8,9]
+# [True, True, True, True, False]
 
 ############################## COMPROBAR SI ALGUN VALOR ES TRUE EN UNA COLECCION #####################################
+
+algun_par : bool = any(map(lambda numero : numero % 2 == 0, impares))
+
+print(algun_par)
